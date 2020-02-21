@@ -1,0 +1,111 @@
+html {
+	font-size: 62.5%;
+}
+
+body {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+h1 {
+	font-size: 26px;
+	color: #212121;
+	line-height: 1.2;
+	padding: 2rem;
+}
+
+.form {
+	display: flex;
+	flex-direction: column;
+	width: 45%;
+	max-width: 35em;
+	min-height: 40rem;
+	margin: 2rem auto;
+	background: #fff;
+	border-radius: 10px;
+	padding: 1.5rem;
+	background: rgb(167, 213, 226);
+}
+
+.form label {
+	font-size: 1.2rem;
+	text-align: left;
+	font-weight: 700;
+	padding-top: 1rem;
+	padding-left: 1rem;
+	width: 100%;
+}
+
+.form input {
+	width: 95%;
+	margin: 1rem auto;
+	height: 4rem;
+	background: #fff;
+	border: 2px solid #eee;
+	border-radius: 6px;
+	font-size: 16px;
+	color: #000;
+}
+
+.form input:focus {
+	border: 2px solid lightgray;
+	outline: none;
+}
+
+.checkbox-container span,
+.checkbox {
+	display: inline-block;
+}
+
+::placeholder {
+	color: #e7e7e7;
+	padding-left: 1rem;
+}
+
+.form button {
+	color: white;
+	background: rgb(167, 213, 226);
+	font-size: 2rem;
+	height: 51px;
+	width: 110%;
+	margin-top: 4rem;
+	margin-left: -5%;
+	padding: 1.5rem 1rem 1rem;
+	outline: none;
+	border: none;
+	border-top: 3px solid white;
+	font-weight: 700;
+	cursor: pointer;
+}
+
+.errors {
+	font-style: italic;
+	font-weight: 200;
+	margin-top: 0;
+}
+
+table {
+	width: 40%;
+	margin: 2rem auto;
+}
+
+thead {
+	color: white;
+	background: rgb(167, 213, 226);
+	font-size: 2rem;
+}
+
+tbody {
+	font-size: 1.2rem;
+}
+
+td {
+	padding: 1.5rem;
+}
+
+@media (min-width: 700px) {
+	.contentWrapper {
+		display: flex;
+	}
+}
