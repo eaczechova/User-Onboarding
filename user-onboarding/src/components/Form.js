@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { withFormik, Form, Field } from 'formik';
 import * as Yup from 'yup';
+import Users from './Users';
 
 const OnboardingForm = ({ touched, errors, status, isSubmitting }) => {
 	const [user, setUser] = useState([]);
@@ -47,29 +48,7 @@ const OnboardingForm = ({ touched, errors, status, isSubmitting }) => {
 					</label>
 					<button disabled={isSubmitting}>Send</button>
 				</Form>
-
-				{user.length > 0 ? (
-					<table>
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>Email</th>
-								<th>Role</th>
-							</tr>
-						</thead>
-						{user.map(user => {
-							return (
-								<tbody key={user.id}>
-									<tr>
-										<td>{user.name}</td>
-										<td>{user.email}</td>
-										<td>{user.role}</td>
-									</tr>
-								</tbody>
-							);
-						})}
-					</table>
-				) : null}
+				<Users user={user} />
 			</div>
 		</div>
 	);
