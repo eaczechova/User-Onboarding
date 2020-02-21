@@ -32,6 +32,15 @@ const OnboardingForm = ({ touched, errors, status, isSubmitting }) => {
 							<p className="errors">{errors.password}</p>
 						)}
 					</label>
+					<label>
+						Select role:
+						<Field name="role" component="select" placeholder="Select Role">
+							<option>Select your Role</option>
+							<option value="Student">Student</option>
+							<option value="Team Lead">Team Lead</option>
+							<option value="Section Lead">Section Lead</option>
+						</Field>
+					</label>
 					<label className="checkbox-container">
 						<Field type="checkbox" name="tos" className="checkbox" />
 						<span>I agree to the Terms of Service.</span>
@@ -45,7 +54,7 @@ const OnboardingForm = ({ touched, errors, status, isSubmitting }) => {
 							<tr>
 								<th>Name</th>
 								<th>Email</th>
-								<th>Age</th>
+								<th>Role</th>
 							</tr>
 						</thead>
 						{user.map(user => {
@@ -54,7 +63,7 @@ const OnboardingForm = ({ touched, errors, status, isSubmitting }) => {
 									<tr>
 										<td>{user.name}</td>
 										<td>{user.email}</td>
-										<td>36</td>
+										<td>{user.role}</td>
 									</tr>
 								</tbody>
 							);
@@ -67,11 +76,12 @@ const OnboardingForm = ({ touched, errors, status, isSubmitting }) => {
 };
 
 const FormikLoginForm = withFormik({
-	mapPropsToValues({ name, email, password, tos }) {
+	mapPropsToValues({ name, email, password, role, tos }) {
 		return {
 			name: name || '',
 			email: email || '',
 			password: password || '',
+			role: role,
 			tos: tos || false
 		};
 	},
@@ -85,18 +95,18 @@ const FormikLoginForm = withFormik({
 			.required('Password is required')
 	}),
 
-	handleSubmit: (values, { resetForm, setStatus }) => {
+	handleSubmit: (values, { resetForm, setStatus, setSubmitting }) => {
 		axios
 			.post('https://reqres.in/api/users', values)
 			.then(res => {
 				console.log('res.data', res.data); // Data was created successfully and logs to console
 				resetForm();
 				setStatus(res.data);
-				// setSubmitting(false);
+				setSubmitting(false);
 			})
 			.catch(err => {
 				console.log(err); // There was an error creating the data and logs to console
-				// setSubmitting(false);
+				setSubmitting(false);
 			});
 	}
 })(OnboardingForm);
