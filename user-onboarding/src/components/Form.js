@@ -89,13 +89,14 @@ const FormikLoginForm = withFormik({
 	validationSchema: Yup.object().shape({
 		email: Yup.string()
 			.email('Email not valid')
-			.required('Email is required'),
+			.required('Email is required')
+			.matches(/^(?!(waffle@syrup.com)$).+$/, 'has been already taken'),
 		password: Yup.string()
 			.min(8, 'Password must be 8 characters or longer')
 			.required('Password is required')
 	}),
 
-	handleSubmit: (values, { resetForm, setStatus, setSubmitting }) => {
+	handleSubmit: (values, { resetForm, setStatus, setSubmitting, setErrors }) => {
 		axios
 			.post('https://reqres.in/api/users', values)
 			.then(res => {
